@@ -149,20 +149,25 @@ hands off a draft JE in the handoff format.
    tell the user to drag the file onto the JE in the UI.
 
 8. **Chain to slack-entry-notify.** Unless `"skip_slack": true` is set in
-   the handoff, immediately invoke the `slack-entry-notify` skill with a
-   payload containing the original handoff fields PLUS:
-   - `je_id`: the new NetSuite internal id
-   - `je_tranid`: the human-readable JE number (look up via SuiteQL on the new id)
-   - `je_link`: the deep link built in Step 7
-   - `record_type`: the classification chosen in Step 2
-   - `status`: `"pending_approval"` (the JE was just created in that state)
-   - `subsidiary_name`: looked up from the subsidiary id if not already in handoff
+   the handoff, immediately invoke the `slack-entry-notify` skill, mapping the
+   JE into its payload shape (see that skill's `references/payload-shape.md`):
 
-   The `slack-entry-notify` skill renders and posts to your configured review
-   channel. If the original handoff contained `slack_notes` or `workpaper_path`
-   fields, they pass through unchanged. If Slack posting fails, surface the
-   error — the JE still exists in NetSuite, but the team won't have been
-   notified.
+   | slack-entry-notify field | Value |
+   |---|---|
+   | `status` | `"pending"` (the JE was just created in Pending Approval) |
+   | `title` | `"JE <tranid> — <memo>"` (look up tranId via SuiteQL on the new id) |
+   | `subtitle` | `"<subsidiary name> • <tran date>"` |
+   | `channel_id` | handoff `channel_id` if set, else your configured review channel |
+   | `skip` | handoff `skip_slack` |
+   | `notes` | handoff `slack_notes` (pass through unchanged) |
+   | `columns` | `{"left": "Debit", "right": "Credit"}` |
+   | `lines` | one per JE line: `{code: account number, name: account name, left: debit, right: credit}` |
+   | `total` | total debits (= total credits; validated in Step 3) |
+   | `link` / `link_text` | the deep link built in Step 7 / `"View JE in NetSuite"` |
+   | `attachment_path` | handoff `workpaper` path, if any |
+
+   If Slack posting fails, surface the error — the JE still exists in
+   NetSuite, but the team won't have been notified.
 
 9. **On error from NetSuite:** surface the full error response verbatim. Do
    NOT silently retry. Common errors: invalid account ID, missing department
