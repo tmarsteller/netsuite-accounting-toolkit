@@ -90,8 +90,16 @@ def validate(handoff: dict) -> ValidationResult:
         r.warn(f"Memo does not start with {MEMO_PREFIX!r}: {memo!r}. Confirm the memo prefix.")
 
     # --- header subsidiary ---
+    # When KNOWN_SUBSIDIARIES is unconfigured (empty), skip ID validation and
+    # warn once — out of the box, entries should not hard-fail on this.
+    if not KNOWN_SUBSIDIARIES:
+        r.warn(
+            "KNOWN_SUBSIDIARIES is not configured in validate_je.py — skipping "
+            "subsidiary ID validation. Populate it (via `ns_getSubsidiaries`) to "
+            "catch typo'd subsidiary IDs before they hit NetSuite."
+        )
     header_sub = _normalize_sub(handoff.get("subsidiary"))
-    if header_sub not in KNOWN_SUBSIDIARIES:
+    if KNOWN_SUBSIDIARIES and header_sub not in KNOWN_SUBSIDIARIES:
         r.fail(f"Header `subsidiary` {header_sub!r} is not a known subsidiary ID.")
 
     # --- AICJE classification ---
@@ -122,15 +130,15 @@ def validate(handoff: dict) -> ValidationResult:
                 f"(this is an AICJE)."
             )
         for s in to_subs:
-            if s not in KNOWN_SUBSIDIARIES:
+            if KNOWN_SUBSIDIARIES and s not in KNOWN_SUBSIDIARIES:
                 r.fail(f"`to_subsidiaries` contains unknown subsidiary ID: {s!r}")
             if s == header_sub:
                 r.fail(f"`to_subsidiaries` includes the header subsidiary {s!r} (self-IC not allowed).")
         if len(distinct_subs) >= 3:
             r.warn(
                 f"AICJE touches {len(distinct_subs)} subsidiaries "
-                f"({sorted(distinct_subs)}). NetSuite multi-target `toSubsidiaries` "
-                f"formatting has not been smoke-tested at <your-org> — confirm before posting."
+                f"({sorted(distinct_subs)}). Multi-target `toSubsidiaries` payloads "
+                f"are less common — confirm the first one posts correctly."
             )
 
     # --- lines ---
@@ -159,7 +167,7 @@ def validate(handoff: dict) -> ValidationResult:
             r.fail(f"{prefix}: `credit` must be positive, got {credit}.")
 
         line_sub = _normalize_sub(ln.get("subsidiary")) or header_sub
-        if line_sub and line_sub not in KNOWN_SUBSIDIARIES:
+        if KNOWN_SUBSIDIARIES and line_sub and line_sub not in KNOWN_SUBSIDIARIES:
             r.fail(f"{prefix}: subsidiary {line_sub!r} is not a known subsidiary ID.")
 
         if debit is not None:
@@ -238,7 +246,7 @@ if __name__ == "__main__":
         print("usage: validate_je.py <handoff.json>", file=sys.stderr)
         sys.exit(2)
 
-    with open(sys.argv[1], encoding="utf-8") as f:
+    with open(sys.argv[1], encoding="utf-8-sig") as f:
         h = json.load(f)
     res = validate(h)
     print(f"OK: {res.ok}")

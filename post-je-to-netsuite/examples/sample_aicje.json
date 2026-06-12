@@ -1,0 +1,6 @@
+{"memo": "TASK 099 ME - IC Allocation", "tran_date": "2026-05-31", "subsidiary": "10", "to_subsidiaries": ["20"],
+ "lines": [
+   {"account": "60100", "subsidiary": "10", "debit": 5000.00, "memo": "IC alloc expense"},
+   {"account": "23000", "subsidiary": "10", "credit": 5000.00, "memo": "IC payable to sub 20"},
+   {"account": "13000", "subsidiary": "20", "debit": 5000.00, "memo": "IC receivable from sub 10"},
+   {"account": "10100", "subsidiary": "20", "credit": 5000.00, "memo": "IC alloc funding"}]}

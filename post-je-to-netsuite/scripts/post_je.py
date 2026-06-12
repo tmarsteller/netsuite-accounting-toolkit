@@ -316,7 +316,7 @@ if __name__ == "__main__":
     if src.lower().endswith(".xlsx"):
         h = from_excel(src)
     else:
-        with open(src, encoding="utf-8") as f:
+        with open(src, encoding="utf-8-sig") as f:
             h = json.load(f)
 
     payload = to_ns_payload(h)

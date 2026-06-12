@@ -78,3 +78,20 @@ post-je-to-netsuite/
 ## License
 
 MIT — see `LICENSE`.
+
+
+## Testing locally
+
+The `examples/` folder has three sample handoffs you can run against the
+validator and renderer with no NetSuite account:
+
+```bash
+python scripts/validate_je.py examples/sample_je.json        # passes (exit 0)
+python scripts/validate_je.py examples/sample_aicje.json     # passes — AICJE, per-subsidiary balanced
+python scripts/validate_je.py examples/sample_invalid.json   # fails — unbalanced + missing line memo (exit 1)
+python scripts/render_preview.py examples/sample_je.json     # prints the chat preview
+```
+
+With `KNOWN_SUBSIDIARIES` unconfigured the validator skips subsidiary ID
+checks (with a warning). Populate it and the samples' placeholder IDs will
+need to match your org.

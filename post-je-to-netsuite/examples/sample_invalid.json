@@ -1,0 +1,4 @@
+{"memo": "broken entry", "tran_date": "2026-05-31", "subsidiary": "1",
+ "lines": [
+   {"account": "60100", "debit": 10000.00, "memo": "oops"},
+   {"account": "21500", "credit": 9000.00}]}

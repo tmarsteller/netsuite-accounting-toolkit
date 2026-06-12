@@ -150,7 +150,7 @@ if __name__ == "__main__":
         print("usage: render_preview.py <handoff.json>", file=sys.stderr)
         sys.exit(2)
 
-    with open(sys.argv[1], encoding="utf-8") as f:
+    with open(sys.argv[1], encoding="utf-8-sig") as f:
         h = json.load(f)
 
     res = validate(h)
