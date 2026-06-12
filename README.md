@@ -25,6 +25,7 @@ Everything here follows the same operating principles:
 | [rippling-aicje-name](rippling-aicje-name/) | SuiteScript (UE + Map/Reduce) | Auto-fills the line-level Name (entity) field on Advanced Intercompany JEs created by the Rippling payroll integration — Rippling leaves it blank, which breaks intercompany elimination. Fail-open User Event + daily sweep backstop. |
 | [netsuite-developer](netsuite-developer/) | Claude Code skill | Disciplined, schema-aware NetSuite development: SuiteQL/SuiteScript guardrails (no DB calls in loops, no unbounded searches, injection-safe queries), MCP connector best practices, and optional feature modules (Multi-Book, ARM, SuiteBilling, SuiteTax). |
 | [orchestrator](orchestrator/) | Python library | Headless helpers for scripted automations: post a Pending Approval JE via REST (OAuth 1.0 TBA), look up posting periods, verify balance, notify Slack. |
+| [docs/claude-netsuite-admin-setup-guide.pdf](docs/claude-netsuite-admin-setup-guide.pdf) | Setup guide (PDF) | **Start here.** Step-by-step admin guide to connect Claude to NetSuite via the MCP connector — integration record, token-based auth, roles/permissions, and the Claude-side configuration. Prerequisite for the skills below. |
 | [docs/HOW_WE_BUILT_IT_TEMPLATE.md](docs/HOW_WE_BUILT_IT_TEMPLATE.md) | Template | Fill-in-the-blanks doc for writing up an accounting automation after you ship it — problem, design decisions, toolchain, gotchas, cost, ownership. Written for controllers and auditors, not engineers. |
 
 ## How the pieces chain together
@@ -47,9 +48,6 @@ Each tool also works standalone — the chaining is convention, not coupling.
 - [structured-vibe-accounting](https://github.com/tmarsteller/structured-vibe-accounting) —
   the six-phase guided process used to design and document these automations.
   ERP-agnostic, so it lives in its own repo.
-- [claude-netsuite-MCP-setup-guide](https://github.com/tmarsteller/claude-netsuite-MCP-setup-guide) —
-  how to connect Claude to NetSuite via the MCP connector (prerequisite for the
-  skills in this toolkit).
 
 ## Setup
 
@@ -58,7 +56,9 @@ applicable) example config. Broadly:
 
 - **Claude Code skills**: copy the folder into `~/.claude/skills/` (or your
   project's `.claude/skills/`). The JE-posting skills assume the NetSuite MCP
-  connector is configured.
+  connector is configured — see
+  [docs/claude-netsuite-admin-setup-guide.pdf](docs/claude-netsuite-admin-setup-guide.pdf)
+  to set that up first.
 - **SuiteScripts**: deploy via the included SDF projects
   (`suitecloud account:setup`, validate, deploy) under your own account; script
   IDs are parameterized.
