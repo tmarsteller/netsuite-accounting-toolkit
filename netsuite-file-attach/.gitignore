@@ -1,0 +1,13 @@
+# Credentials — never commit
+.env
+.env.tmp
+
+# SuiteCloud CLI account linkage (created by `suitecloud account:setup`)
+sdf-project/project.json
+sdf-project/.suitecloud*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

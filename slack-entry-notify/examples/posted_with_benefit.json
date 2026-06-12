@@ -1,0 +1,18 @@
+{
+  "status": "posted",
+  "channel_id": "C0XXXXXXX",
+  "title": "Adjustment #5678 — Reversal",
+  "subtitle": "Example Corp • 2026-02-28",
+  "columns": { "left": "Debit", "right": "Credit" },
+  "currency_symbol": "$",
+  "notes": [
+    "Negative amounts shown in parentheses (accounting convention)."
+  ],
+  "lines": [
+    { "code": "40000", "name": "Revenue", "left": null, "right": -2500.00 },
+    { "code": "11000", "name": "AR",      "left": -2500.00, "right": null }
+  ],
+  "total": -2500.00,
+  "link": "https://example.com/erp/journal/5678",
+  "link_text": "Open Adjustment #5678"
+}

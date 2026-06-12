@@ -1,0 +1,18 @@
+<restlet scriptid="customscript_file_attach">
+  <description>Upload a file to the File Cabinet and optionally attach it to a record. POST only, TBA-authenticated.</description>
+  <isinactive>F</isinactive>
+  <name>File Attach RESTlet</name>
+  <notifyowner>T</notifyowner>
+  <scriptfile>[/SuiteScripts/FileAttachRestlet.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_file_attach">
+      <allemployees>F</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <isdeployed>T</isdeployed>
+      <loglevel>AUDIT</loglevel>
+      <status>RELEASED</status>
+      <title>File Attach RESTlet</title>
+    </scriptdeployment>
+  </scriptdeployments>
+</restlet>

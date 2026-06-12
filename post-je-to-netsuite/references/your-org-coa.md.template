@@ -1,0 +1,43 @@
+# <your-org> — Subsidiaries, Custom Forms, Key Accounts
+
+> Fill this template in with **your org's** NetSuite IDs before using the skill.
+> Rename to `your-org-coa.md` once populated.
+
+## Subsidiaries
+
+Run `ns_getSubsidiaries` and paste the result here.
+
+| ID | Name | Notes |
+|----|------|-------|
+| <id> | <Subsidiary name> | |
+
+## Custom Forms
+
+Run:
+```sql
+SELECT id, name FROM customform WHERE recordtype IN ('journalentry', 'advintercompanyjournalentry') AND isinactive = 'F'
+```
+
+| ID | Name | Use |
+|----|------|-----|
+| <id> | Standard Journal Entry | Default for normal `journalentry` |
+| <id> | Standard AICJE | Default for `advintercompanyjournalentry` |
+
+## Key accounts referenced by your workflows
+
+| Account # | Description | Used by |
+|-----------|-------------|---------|
+| <acct-id> | <description> | <workflow> |
+
+## Legacy / deprecated accounts (if any)
+
+If your org has retired accounts that should trigger a warning when used in a
+new JE, list them here and update `scripts/validate_je.py:LEGACY_ICO_ACCOUNT`
+to a `LEGACY_ACCOUNTS` set.
+
+## Where this file is read
+
+- `scripts/validate_je.py` — subsidiary ID validation, custom form fallback
+- `scripts/render_preview.py` — pretty-prints names next to IDs
+
+Update this file FIRST when subsidiaries or accounts change in NetSuite.

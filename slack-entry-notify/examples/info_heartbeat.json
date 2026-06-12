@@ -1,0 +1,11 @@
+{
+  "status": "info",
+  "channel_id": "C0XXXXXXX",
+  "workflow_name": "Monthly Bank Reconciliation",
+  "period": "January 2026",
+  "reason": "Reconciled to the penny — no exceptions this period, nothing to review.",
+  "notes": [
+    "Auto-generated heartbeat so the team knows the recon ran."
+  ],
+  "attachment_path": "Recon workbook: /shared/recon/2026-01/bank_recon.xlsx"
+}

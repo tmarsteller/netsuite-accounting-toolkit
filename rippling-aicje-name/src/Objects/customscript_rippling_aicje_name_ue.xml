@@ -1,0 +1,30 @@
+<usereventscript scriptid="customscript_rippling_aicje_name_ue">
+  <name>Rippling AICJE Name Enrichment (UE)</name>
+  <scriptfile>[/SuiteScripts/rippling-aicje-name/rippling_aicje_name_ue.js]</scriptfile>
+  <description>Sets line Name (entity) on Rippling AICJEs pre-approval. Gate: web services + [Rippling] memo. Fail-open.</description>
+  <isinactive>F</isinactive>
+  <notifyowner>T</notifyowner>
+  <scriptcustomfields>
+    <scriptcustomfield scriptid="custscript_rippling_memo_prefix">
+      <label>Rippling Memo Prefix</label>
+      <description>Line-memo prefix that confirms a Rippling entry. Default [Rippling].</description>
+      <fieldtype>TEXT</fieldtype>
+      <applyformatting>F</applyformatting>
+      <defaultvalue>[Rippling]</defaultvalue>
+      <displaytype>NORMAL</displaytype>
+      <isformula>F</isformula>
+      <ismandatory>F</ismandatory>
+      <storevalue>T</storevalue>
+    </scriptcustomfield>
+  </scriptcustomfields>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_rippling_aicje_name_ue">
+      <recordtype>ADVINTERCOMPANYJOURNALENTRY</recordtype>
+      <isdeployed>T</isdeployed>
+      <loglevel>AUDIT</loglevel>
+      <status>TESTING</status>
+      <allroles>T</allroles>
+      <allemployees>T</allemployees>
+    </scriptdeployment>
+  </scriptdeployments>
+</usereventscript>

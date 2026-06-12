@@ -1,0 +1,11 @@
+{
+  "_comment": "Copy this file to orchestrator_config.json and fill in real values. Never commit orchestrator_config.json to git.",
+
+  "slack_webhook_url": "https://hooks.slack.com/services/TXXXXXXXX/BXXXXXXXX/xxxxxxxxxxxxxxxxxxxxxxxx",
+
+  "netsuite_account_id":      "XXXXXXXX",
+  "netsuite_consumer_key":    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "netsuite_consumer_secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "netsuite_token_id":        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "netsuite_token_secret":    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+}

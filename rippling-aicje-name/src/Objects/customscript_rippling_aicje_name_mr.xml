@@ -1,0 +1,24 @@
+<mapreducescript scriptid="customscript_rippling_aicje_name_mr">
+  <name>Rippling AICJE Name Enrichment (Sweep)</name>
+  <scriptfile>[/SuiteScripts/rippling-aicje-name/rippling_aicje_name_sweep_mr.js]</scriptfile>
+  <description>Daily backstop: enriches Rippling AICJEs still missing line entity in editable periods.</description>
+  <isinactive>F</isinactive>
+  <notifyowner>T</notifyowner>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_rippling_aicje_name_mr">
+      <title>Rippling AICJE Name Enrichment (Sweep) - Daily</title>
+      <isdeployed>T</isdeployed>
+      <loglevel>AUDIT</loglevel>
+      <status>TESTING</status>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <recurrence>
+        <daily>
+          <!-- EDIT before deploying: set your own start date/time -->
+          <startdate>2026-07-01</startdate>
+          <starttime>10:00:00</starttime>
+          <everyxdays>1</everyxdays>
+        </daily>
+      </recurrence>
+    </scriptdeployment>
+  </scriptdeployments>
+</mapreducescript>

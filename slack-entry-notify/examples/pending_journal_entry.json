@@ -1,0 +1,19 @@
+{
+  "status": "pending",
+  "channel_id": "C0XXXXXXX",
+  "title": "JE #1234 — Monthly Accrual",
+  "subtitle": "Acme Holdings, Inc. • 2026-01-31",
+  "columns": { "left": "Debit", "right": "Credit" },
+  "notes": [
+    "⚠️ Estimate — confirm the rate assumption before approving.",
+    "Source data pulled live at run time."
+  ],
+  "lines": [
+    { "code": "60100", "name": "Consulting Expense", "left": 10000.00, "right": null },
+    { "code": "21500", "name": "Accrued Liabilities", "left": null, "right": 10000.00 }
+  ],
+  "total": 10000.00,
+  "link": "https://example.com/erp/journal/1234",
+  "link_text": "Open JE #1234",
+  "attachment_path": "Workpaper: /shared/close/2026-01/accrual.xlsx"
+}

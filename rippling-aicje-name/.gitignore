@@ -1,0 +1,5 @@
+# SuiteCloud CLI writes your account auth ID here — never commit it
+project.json
+
+node_modules/
+.DS_Store

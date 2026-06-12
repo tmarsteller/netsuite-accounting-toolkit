@@ -1,0 +1,13 @@
+# Credentials — never commit real config
+orchestrator_config.json
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS noise
+.DS_Store
+Thumbs.db
